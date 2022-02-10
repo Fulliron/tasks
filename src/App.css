@@ -25,6 +25,12 @@
     color: white;
 }
 
+.App-image-me{
+    width: 40%;
+    justify-content: center;
+    vertical-align: center;
+}
+
 .App-col-box{
     background-color:#e00000;
     width: 50%;
