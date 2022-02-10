@@ -6,7 +6,7 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">
-                UD CISC275 with React Hooks and TypeScript
+                <h1>UD CISC275 with React Hooks and TypeScript</h1>
             </header>
             <Container>
                 <Row>
