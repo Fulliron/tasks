@@ -51,6 +51,14 @@ export function isQuestion(message: string): boolean {
 export function convertYesNo(word: string): boolean | null {
     let test: string = word;
     test = test.toLowerCase();
-    const bool: boolean = test === "yes" ? true : false;
-    return bool;
+    const isYes: boolean = test === "yes" ? true : false;
+    const isNo: boolean = test === "no" ? true : false;
+    if (isYes) {
+        return true;
+    }
+    if (isNo) {
+        return false;
+    } else {
+        return null;
+    }
 }
