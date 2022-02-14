@@ -11,12 +11,13 @@ function App(): JSX.Element {
             <Container>
                 <Row>
                     <Col>
-                        <img
-                            className="App-image-me"
-                            src="https://i.imgur.com/X39E2WM.png"
-                            alt="Some art of myself, drawn by my fiance."
-                        />
-                        <div className="App-col-box"></div>
+                        <div className="App-col-box">
+                            <img
+                                className="App-image-me"
+                                src="https://i.imgur.com/X39E2WM.png"
+                                alt="Some art of myself, drawn by my fiance."
+                            />
+                        </div>
                     </Col>
                     <Col>
                         <div className="App-col-box">
@@ -25,7 +26,7 @@ function App(): JSX.Element {
                                 <li>
                                     I am a senior Cognitive Science major at UD
                                 </li>
-                                <li>I&aposm a trans woman</li>
+                                <li>I am a trans woman</li>
                                 <li>I am engaged</li>
                             </ul>
                             <p>

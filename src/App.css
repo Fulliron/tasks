@@ -26,15 +26,16 @@
 }
 
 .App-image-me{
-    width: 40%;
+    width: 90%;
     justify-content: center;
     vertical-align: center;
 }
 
 .App-col-box{
     background-color:#e00000;
-    width: 50%;
-    min-height: 25%
+    width: 100%;
+    min-height: 25%;
+    color: #ccebeb;
 }
 
 .App-link {
