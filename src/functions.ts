@@ -1,5 +1,3 @@
-import { text } from "stream/consumers";
-
 /**
  * Consumes a single temperature in Fahrenheit (a number) and converts to Celsius
  * using this formula:
@@ -17,9 +15,9 @@ export function fahrenheitToCelius(temperature: number): number {
  */
 export function add3(first: number, second: number, third: number): number {
     let sum = 0;
-    first >= 0 ? (sum += first) : sum;
-    second >= 0 ? (sum += second) : sum;
-    third >= 0 ? (sum += third) : sum;
+    sum += first >= 0 ? first : 0;
+    sum += second >= 0 ? second : 0;
+    sum += third >= 0 ? third : 0;
     return sum;
 }
 
