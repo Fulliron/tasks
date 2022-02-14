@@ -1,3 +1,5 @@
+import { text } from "stream/consumers";
+
 /**
  * Consumes a single temperature in Fahrenheit (a number) and converts to Celsius
  * using this formula:
@@ -36,7 +38,9 @@ export function shout(message: string): string {
  * mark. Do not use an `if` statement in solving this question.
  */
 export function isQuestion(message: string): boolean {
-    return true;
+    const value: boolean =
+        message.charAt(message.length - 1) === "?" ? true : false;
+    return value;
 }
 
 /**
@@ -45,5 +49,8 @@ export function isQuestion(message: string): boolean {
  * upper or lower case), then return `false`. Otherwise, return `null`.
  */
 export function convertYesNo(word: string): boolean | null {
-    return true;
+    let test: string = word;
+    test = test.toLowerCase();
+    const bool: boolean = test === "yes" ? true : false;
+    return bool;
 }
