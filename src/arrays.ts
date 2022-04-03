@@ -5,9 +5,9 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    if (numbers.length == 0) {
+    if (numbers.length === 0) {
         return numbers;
-    } else if (numbers.length == 1) {
+    } else if (numbers.length === 1) {
         const numberReturn = [...numbers, ...numbers];
         return numberReturn;
     } else {
@@ -45,7 +45,7 @@ export function stringsToIntegers(numbers: string[]): number[] {
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
     const filterSymbol = amounts.map((amount: string): string =>
-        amount[0] == "$" ? amount.slice(1) : amount
+        amount[0] === "$" ? amount.slice(1) : amount
     );
     return stringsToIntegers([...filterSymbol]);
 };
@@ -57,10 +57,10 @@ export const removeDollars = (amounts: string[]): number[] => {
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
     const removeQuestions = messages.filter(
-        (message: string): boolean => message[message.length - 1] != "?"
+        (message: string): boolean => message[message.length - 1] !== "?"
     );
     const toShout = [...removeQuestions].map((msg: string): string =>
-        msg[msg.length - 1] == "!" ? msg.toUpperCase() : msg
+        msg[msg.length - 1] === "!" ? msg.toUpperCase() : msg
     );
     return toShout;
 };
@@ -82,7 +82,11 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    const checked = [...colors].filter(
+        (color: string): boolean =>
+            color === "red" || color === "green" || color === "blue"
+    );
+    return checked.length === colors.length;
 }
 
 /**
