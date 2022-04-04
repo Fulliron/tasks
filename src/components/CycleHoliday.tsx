@@ -36,11 +36,11 @@ export function CycleHoliday(): JSX.Element {
     return (
         <div>
             <p>Holiday: {holiday}</p>
-            <Button onClick={cycleHolidayAlphabetically}>
+            <Button onClick={cycleHolidayChronologically}>
                 {" "}
                 Cycle over the year{" "}
             </Button>
-            <Button onClick={cycleHolidayChronologically}>
+            <Button onClick={cycleHolidayAlphabetically}>
                 {" "}
                 Cycle Alphabetically{" "}
             </Button>
