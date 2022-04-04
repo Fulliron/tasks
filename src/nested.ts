@@ -1,6 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
-import { makeBlankQuestion, renameQuestion } from "./objects";
+import { duplicateQuestion, makeBlankQuestion, renameQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -254,7 +254,7 @@ export function changeQuestionTypeById(
     const copy = deepCopy(questions);
     let editedOptions = [];
     const index = locateQuestionByID(targetId, copy);
-    if (newQuestionType === "multiple_choice_question"){
+    if (newQuestionType === "multiple_choice_question") {
         editedOptions = copy[index].options;
     }
     copy.splice(index, 1, {
@@ -281,7 +281,19 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    const copy = deepCopy(questions);
+    const index = locateQuestionByID(targetId, copy);
+    let editedOptions = copy[index].options;
+    if (targetOptionIndex === -1) {
+        editedOptions = [...editedOptions, newOption];
+    } else {
+        editedOptions.splice(targetOptionIndex, 1, newOption);
+    }
+    copy.splice(index, 1, {
+        ...copy[index],
+        options: editedOptions
+    });
+    return copy;
 }
 
 /***
@@ -295,5 +307,8 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    const copy = deepCopy(questions);
+    const index = locateQuestionByID(targetId, copy);
+    copy.splice(index + 1, 0, duplicateQuestion(newId, { ...copy[index] }));
+    return copy;
 }
