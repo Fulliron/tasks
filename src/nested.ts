@@ -15,9 +15,23 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return [];
+    return deepCopy(questions).filter(
+        (quest: Question): boolean =>
+            quest.body !== "" ||
+            quest.expected !== "" ||
+            [...quest.options] !== []
+    );
 }
 
+function deepCopy(questions: Question[]): Question[] {
+    return questions.map(
+        (quest: Question): Question => ({
+            ...quest,
+            options: [...quest.options],
+            type: quest.type
+        })
+    );
+}
 /***
  * Consumes an array of questions and returns the question with the given `id`. If the
  * question is not found, return `null` instead.
@@ -26,7 +40,18 @@ export function findQuestion(
     questions: Question[],
     id: number
 ): Question | null {
-    return null;
+    if (questions === null) {
+        return null;
+    }
+    const copy = deepCopy(questions);
+    const filteredCopy = copy.filter(
+        (quest: Question): boolean => quest.id === id
+    );
+    if (filteredCopy.length >= 1) {
+        return [...filteredCopy][0];
+    } else {
+        return null;
+    }
 }
 
 /**
