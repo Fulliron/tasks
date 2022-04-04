@@ -145,7 +145,18 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    return deepCopy(questions).reduce(
+        (answers: Answer[], question: Question) => [
+            ...answers,
+            {
+                questionId: question.id,
+                text: "",
+                submitted: false,
+                correct: false
+            }
+        ],
+        []
+    );
 }
 
 /***
@@ -209,7 +220,15 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const editedCopy = questions.map(
+        (quest: Question): Question => ({
+            ...quest,
+            options: [...quest.options],
+            type: quest.type,
+            name: quest.id === targetId ? (quest.name = newName) : quest.name
+        })
+    );
+    return editedCopy;
 }
 
 /***
