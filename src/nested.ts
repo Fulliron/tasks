@@ -1,6 +1,10 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
-import { duplicateQuestion, makeBlankQuestion, renameQuestion } from "./objects";
+import {
+    duplicateQuestion,
+    makeBlankQuestion,
+    renameQuestion
+} from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -16,15 +20,12 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return deepCopy(questions).filter(isEmpty);
+    const notEmpties = deepCopy(questions).filter(isNotEmpty);
+    return notEmpties;
 }
 
-function isEmpty(question: Question): boolean {
-    return (
-        question.body === "" &&
-        question.expected === "" &&
-        [...question.options] !== []
-    );
+function isNotEmpty(question: Question): boolean {
+    return question.body !== question.expected || question.options.length > 0;
 }
 
 function deepCopy(questions: Question[]): Question[] {
