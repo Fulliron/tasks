@@ -247,7 +247,7 @@ export function changeQuestionTypeById(
     newQuestionType: QuestionType
 ): Question[] {
     const copy = deepCopy(questions);
-    let editedOptions = [];
+    let editedOptions: string[] = [];
     const index = locateQuestionByID(targetId, copy);
     if (newQuestionType === "multiple_choice_question") {
         editedOptions = copy[index].options;
