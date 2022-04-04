@@ -1,6 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
-import { makeBlankQuestion } from "./objects";
+import { makeBlankQuestion, renameQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -220,15 +220,20 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    const editedCopy = questions.map(
-        (quest: Question): Question => ({
-            ...quest,
-            options: [...quest.options],
-            type: quest.type,
-            name: quest.id === targetId ? (quest.name = newName) : quest.name
-        })
+    const copy = deepCopy(questions);
+    copy.splice(
+        locateQuestionByID(targetId, copy),
+        1,
+        renameQuestion(copy[locateQuestionByID(targetId, copy)], newName)
     );
-    return editedCopy;
+
+    return copy;
+}
+
+function locateQuestionByID(targetId: number, questions: Question[]): number {
+    return deepCopy(questions).findIndex(
+        (quest: Question) => quest.id === targetId
+    );
 }
 
 /***
