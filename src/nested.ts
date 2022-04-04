@@ -85,14 +85,21 @@ export function getNames(questions: Question[]): string[] {
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return 0;
+    const points = deepCopy(questions).reduce(
+        (pts: number, question: Question) => pts + question.points,
+        0
+    );
+    return points;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    const published = deepCopy(questions).filter(
+        (quest: Question): boolean => quest.published === true
+    );
+    return sumPoints(published);
 }
 
 /***
@@ -113,7 +120,22 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    return "";
+    const csv = deepCopy(questions).reduce(
+        (currCSV: string, question: Question) =>
+            currCSV +
+            "\n" +
+            question.id +
+            "," +
+            question.name +
+            "," +
+            question.options.length +
+            "," +
+            question.points +
+            "," +
+            question.published,
+        "id,name,options,points,published"
+    );
+    return csv;
 }
 
 /**
