@@ -16,11 +16,14 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return deepCopy(questions).filter(
-        (quest: Question): boolean =>
-            quest.body !== "" ||
-            quest.expected !== "" ||
-            [...quest.options] !== []
+    return deepCopy(questions).filter(isEmpty);
+}
+
+function isEmpty(question: Question): boolean {
+    return (
+        question.body === "" &&
+        question.expected === "" &&
+        [...question.options] !== []
     );
 }
 
@@ -248,7 +251,18 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    const copy = deepCopy(questions);
+    let editedOptions = [];
+    const index = locateQuestionByID(targetId, copy);
+    if (newQuestionType === "multiple_choice_question"){
+        editedOptions = copy[index].options;
+    }
+    copy.splice(index, 1, {
+        ...copy[index],
+        type: newQuestionType,
+        options: editedOptions
+    });
+    return copy;
 }
 
 /**
