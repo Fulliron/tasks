@@ -59,7 +59,14 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    if (questions === null) {
+        return null;
+    }
+    const copy = deepCopy(questions);
+    const filteredCopy = copy.filter(
+        (quest: Question): boolean => quest.id !== id
+    );
+    return filteredCopy;
 }
 
 /***
