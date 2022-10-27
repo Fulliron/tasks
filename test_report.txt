@@ -1,7 +1,10 @@
 
 > react-typescript-starter@0.1.0 test
-> react-scripts test "--coverage"
+> react-scripts test
 
+Browserslist: caniuse-lite is outdated. Please run:
+  npx browserslist@latest --update-db
+  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 PASS src/nested.test.ts
 PASS src/arrays.test.ts
 PASS src/objects.test.ts
@@ -58,5 +61,5 @@ All files                    |     100 |    97.75 |     100 |     100 |
 Test Suites: 20 passed, 20 total
 Tests:       134 passed, 134 total
 Snapshots:   0 total
-Time:        12.695 s
+Time:        17.68 s
 Ran all test suites.
